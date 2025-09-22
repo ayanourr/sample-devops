@@ -5,5 +5,9 @@ npm-debug.log
 logs
 coverage
 .env
+Dockerfile
+.dockerignore
+README.md
+.vscode/
 
 
