@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - Sample DevOps App</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">Sample DevOps App</div>
+      <nav>
+        <a href="/">Home</a>
+        <a class="active" href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <button id="themeToggle" aria-label="Toggle Theme">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container content">
+    <h1>About This Application</h1>
+    <p>This project is designed for junior DevOps trainees to practice building CI/CD pipelines. It simulates a realistic web application with a Node.js backend and a simple static frontend.</p>
+    <h2>Highlights</h2>
+    <ul>
+      <li>Express.js REST API</li>
+      <li>Responsive HTML/CSS/JS frontend</li>
+      <li>Unit tests with Jest + Supertest</li>
+      <li>Dockerized with multi-stage builds</li>
+      <li>Security headers and basic rate limiting</li>
+      <li>Health and metrics endpoints for observability</li>
+    </ul>
+
+    <h2>Documentation</h2>
+    <p>Explore the API endpoints directly:</p>
+    <ul>
+      <li><a href="/health">/health</a></li>
+      <li><a href="/api/data">/api/data</a></li>
+      <li><a href="/api/info">/api/info</a></li>
+      <li><a href="/metrics">/metrics</a></li>
+    </ul>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Sample DevOps App.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>
+
+

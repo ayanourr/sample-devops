@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample DevOps App</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">Sample DevOps App</div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <button id="themeToggle" aria-label="Toggle Theme">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-content">
+        <h1>Build, Test, Deploy with Confidence</h1>
+        <p>A realistic training app to learn modern DevOps pipelines.</p>
+        <a class="btn primary" href="#features">Explore Features</a>
+      </div>
+      <picture>
+        <img src="/assets/images/hero-placeholder.svg" alt="DevOps Illustration" width="480" height="300" loading="lazy" />
+      </picture>
+    </section>
+
+    <section id="features" class="features container">
+      <h2>Key Features</h2>
+      <ul class="feature-grid" id="featureList">
+        <!-- Populated by JS from /api/data -->
+      </ul>
+    </section>
+
+    <section class="items container">
+      <div class="items-header">
+        <h2>Recent Items</h2>
+        <div class="filters">
+          <input type="text" id="filterInput" placeholder="Filter by technology..." />
+        </div>
+      </div>
+      <div id="itemsContainer" class="card-grid" aria-live="polite">
+        <div class="loading" id="itemsLoading">Loading items…</div>
+      </div>
+      <div class="error hidden" id="itemsError" role="alert">Failed to load items. Please try again.</div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Sample DevOps App. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>
+
+

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300" fill="none">
+  <rect width="480" height="300" rx="16" fill="#121a2e"/>
+  <g opacity="0.6">
+    <circle cx="90" cy="80" r="40" stroke="#6aa5ff" stroke-width="3"/>
+    <rect x="160" y="50" width="220" height="60" rx="12" stroke="#6aa5ff" stroke-width="3"/>
+    <rect x="160" y="130" width="260" height="120" rx="12" stroke="#6aa5ff" stroke-width="3"/>
+  </g>
+  <text x="24" y="270" fill="#6aa5ff" font-family="Inter, Arial" font-size="18">DevOps Training</text>
+</svg>
+
+

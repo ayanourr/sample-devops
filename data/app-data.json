@@ -1,0 +1,50 @@
+{
+  "app": {
+    "name": "Sample DevOps App",
+    "version": "1.0.0",
+    "description": "A sample web application for DevOps pipeline training",
+    "contact": {
+      "email": "admin@example.com",
+      "phone": "+1-555-0123",
+      "location": "San Francisco, CA"
+    },
+    "features": [
+      "RESTful API",
+      "Responsive Design",
+      "Health Monitoring",
+      "Docker Support"
+    ]
+  },
+  "items": [
+    {
+      "id": 1,
+      "title": "Feature One",
+      "description": "A comprehensive feature with advanced functionality",
+      "technologies": ["Node.js", "Express", "Docker", "Jest"],
+      "status": "active",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "Monitoring Dashboard",
+      "description": "Basic metrics endpoint consumed by monitoring tools",
+      "technologies": ["Node.js", "Express"],
+      "status": "active",
+      "featured": false
+    },
+    {
+      "id": 3,
+      "title": "Testing Suite",
+      "description": "Jest and Supertest cover core endpoints and static files",
+      "technologies": ["Jest", "Supertest"],
+      "status": "active",
+      "featured": false
+    }
+  ],
+  "stats": {
+    "users": 1250,
+    "uptime": "99.9%"
+  }
+}
+
+
