@@ -1,0 +1,56 @@
+name: build-docker-new
+
+on:
+  push:
+    branches:
+      - "main"
+      - "feature/**"
+
+jobs:
+  containerize-server:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Build Docker image
+        run: docker build -t aya/testing:latest .
+
+      - name: Run container for health check
+        run: docker run -d --name devopsrunning -p 3000:3000 aya/testing:latest
+
+      - name: Health check
+        run: |
+          sleep 5
+          http_status=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/health)
+          if [ "$http_status" -ne 200 ]; then
+            echo "Health check failed with status $http_status"
+            docker logs devopsrunning
+            docker rm -f devopsrunning
+            exit 1
+          fi
+      - name: Stop container
+        run: docker rm -f devopsrunning
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Login to Amazon ECR
+        run: |
+          aws ecr get-login-password --region us-east-1 | \
+          docker login --username AWS --password-stdin 359850484992.dkr.ecr.us-east-1.amazonaws.com
+      - name: Tag Docker image
+        run: docker tag aya/testing:latest 359850484992.dkr.ecr.us-east-1.amazonaws.com/aya/testing:latest
+
+      - name: Push to Amazon ECR
+        run: docker push 359850484992.dkr.ecr.us-east-1.amazonaws.com/aya/testing:latest
