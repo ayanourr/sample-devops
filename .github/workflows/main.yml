@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: "18"
 
+      - name : run tests
+        run: npm test  
+
       - name: Build Docker image
         run: docker build -t aya/testing:latest .
 
