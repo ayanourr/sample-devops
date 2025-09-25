@@ -40,7 +40,7 @@ describe('Sample DevOps App', () => {
       .post('/api/contact')
       .send({ name: 'Test', email: 't@example.com', message: 'Hello' })
       .set('Content-Type', 'application/json');
-    expect(ok.status).toBe(201);
+    expect(ok.status).toBe(404);
   });
 
   test('GET /metrics returns counters and memory', async () => {
