@@ -1,0 +1,27 @@
+name: "Docker Health Check"
+description: "This action performs health check on a running docker container"
+inputs:
+  container-name:
+    description: "the name of the container to check"
+    required: true
+  url-to-check:
+    description: "the url to perform the health check on"
+    required: false
+    default: "http://localhost:3000/health"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Health check
+      run: |
+        sleep 5
+        http_status=$(curl -s -o /dev/null -w "%{http_code}" ${{ inputs.url-to-check }})
+        if [ "$http_status" -ne 200 ]; then
+          echo "Health check failed with status $http_status"
+          docker logs ${{ inputs.container-name }}
+          docker rm -f ${{ inputs.container-name }}
+          exit 1
+        fi
+
+    - name: Stop container
+      run: docker rm -f ${{ inputs.container-name }}

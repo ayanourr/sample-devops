@@ -1,0 +1,22 @@
+name: "Build and Run Docker Container"
+description: "This action build the docker image then run the container"
+inputs:
+  image-name:
+    description: "the name of the image"
+    required: true
+  container-name:
+    description: "the tag  to use for the image"
+    required: true
+  port-number:
+    description: "the port number to expose"
+    required: false
+    default: "3000:3000"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build Docker image
+      run: docker build -t ${{ inputs.image-name }} .
+
+    - name: Run container for health check
+      run: docker run -d --name ${{ inputs.container-name }} -p ${{ inputs.port-number }} ${{ inputs.image-name }}

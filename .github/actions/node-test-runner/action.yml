@@ -1,0 +1,10 @@
+name: "Run Tests"
+description: "This action install the Packages needed to run the app test and run the tests"
+runs:
+  using: "composite"
+  steps:
+    - name: build the project
+      run: npm install
+
+    - name: run tests
+      run: npm run test
