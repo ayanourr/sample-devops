@@ -5,6 +5,8 @@ runs:
   steps:
     - name: build the project
       run: npm install
+      shell: bash
 
     - name: run tests
       run: npm run test
+      shell: bash

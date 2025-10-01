@@ -17,6 +17,8 @@ runs:
   steps:
     - name: Build Docker image
       run: docker build -t ${{ inputs.image-name }} .
+      shell: bash
 
     - name: Run container for health check
       run: docker run -d --name ${{ inputs.container-name }} -p ${{ inputs.port-number }} ${{ inputs.image-name }}
+      shell: bash

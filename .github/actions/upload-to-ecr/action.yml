@@ -31,9 +31,12 @@ runs:
       run: |
         aws ecr get-login-password --region ${{ inputs.aws-region }} | \
         docker login --username AWS --password-stdin ${{ inputs.ecr-repository }}
+      shell: bash
 
     - name: Tag Docker image
       run: docker tag ${{ inputs.image-name }} ${{ inputs.ecr-repository }}/${{ inputs.image-name }}
+      shell: bash
 
     - name: Push to Amazon ECR
       run: docker push ${{ inputs.ecr-repository }}/${{ inputs.image-name }}
+      shell: bash
