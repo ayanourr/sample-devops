@@ -7,9 +7,8 @@ on:
       - "feature/**"
 
 jobs:
-  containerize-server:
+  test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,10 +21,22 @@ jobs:
       - name: Run tests
         uses: ./.github/actions/node-test-runner
 
+  build-deploy:
+    runs-on: ubuntu-latest
+    needs: test 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
       - name: build and run docker container
         uses: ./.github/actions/build-docker
         with:
-          image-name: "aya/testing:latest"
+          image-name: ${{ vars.IMAGE_NAME }}
           container-name: "devopsrunning"
           port-number: "3000:3000"
 
@@ -35,11 +46,11 @@ jobs:
           container-name: "devopsrunning"
           url-to-check: "http://localhost:3000/health"
 
-      - name: Configure AWS credentials
+      - name: Upload to ECR
         uses: ./.github/actions/upload-to-ecr
         with:
-          image-name: "aya/testing:latest"
-          ecr-repository: "359850484992.dkr.ecr.us-east-1.amazonaws.com"
+          image-name: ${{ vars.IMAGE_NAME }}
+          ecr-repository: ${{ vars.ECR_REPOSITORY }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: ${{ vars.AWS_REGION }}
